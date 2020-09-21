@@ -1,24 +1,9 @@
 part of 'home_cubit.dart';
 
-abstract class HomeState extends Equatable {
-  const HomeState();
-}
-
-class HomeLoading extends HomeState {
-  @override
-  List<Object> get props => [];
-}
-
-class HomeLoaded extends HomeState {
-  final List<Entry> entries;
-
-  const HomeLoaded(this.entries);
-
-  @override
-  List<Object> get props => [];
-}
-
-class HomeFailure extends HomeState {
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class HomeState with _$HomeState {
+  const factory HomeState() = _HomeState;
+  factory HomeState.loading() = HomeLoading;
+  factory HomeState.loaded({@required List<Entry> entries}) = HomeLoaded;
+  factory HomeState.failure({@required String error}) = HomeFailure;
 }

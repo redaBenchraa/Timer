@@ -1,36 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timer/features/create_timer/presentation/cubit/new_timer_cubit.dart';
+import 'package:timer/features/create_timer/presentation/widget/new_timer_widget.dart';
+import 'package:timer/injection/injection.dart';
 
-class NewTimer extends StatelessWidget {
+class NewTimerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const ListTile(
-          title: Text("Name"),
-          trailing: Text("Untiteled"),
-        ),
-        const ListTile(
-          title: Text("Number of sets"),
-          trailing: Text("4"),
-        ),
-        const ListTile(
-          title: Text("Number of reps per set"),
-          trailing: Text("4"),
-        ),
-        const ListTile(
-          title: Text("Repitition duration"),
-          trailing: Text("30 seconds"),
-        ),
-        const ListTile(
-          title: Text("Break between reps"),
-          trailing: Text("10 seconds"),
-        ),
-        const ListTile(
-          title: Text("Break between sets"),
-          trailing: Text("1 minutes"),
-        ),
-      ],
+    return BlocProvider<NewTimerCubit>(
+      create: (context) => getIt<NewTimerCubit>(),
+      child: const NewTimerWidget(),
     );
   }
 }

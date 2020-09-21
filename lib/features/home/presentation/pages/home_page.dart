@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timer/app_localization.dart';
 import 'package:timer/features/home/presentation/cubit/home_cubit.dart';
 import 'package:timer/features/home/presentation/widgets/home_widget.dart';
+import 'package:timer/routes/routes.gr.dart';
 
+import '../../../../colors.dart';
 import '../../../../injection/injection.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,6 +34,18 @@ class HomePage extends StatelessWidget {
         create: (context) => getIt<HomeCubit>()..load(),
         child: const HomeWidget(),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppTheme.yellow,
+        elevation: 0,
+        onPressed: () {
+          ExtendedNavigator.of(context).push(Routes.newTimerPage);
+        },
+        child: const Icon(
+          Icons.add,
+          color: AppTheme.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

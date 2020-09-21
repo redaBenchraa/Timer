@@ -1,5 +1,12 @@
 {
     "title": "Titre",
-    "settings_label" : "Paramètres"
-
+    "settings_label" : "Paramètres",
+    "new_timer" : "Nouveau",
+    "name" : "Nom",
+    "number_of_sets" : "Nombre de séries",
+    "number_of_reps_per_set" : "Nombre de répétitions par série",
+    "repitition_duration" : "Durée de répétition",
+    "break_between_reps" : "Pause entre les répétitions",
+    "break_between_sets" : "Pause entre les séries",
+    "set" : "Définir"
 }

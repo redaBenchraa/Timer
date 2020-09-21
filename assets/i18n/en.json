@@ -1,4 +1,12 @@
 {
     "title": "Timer keeper",
-    "settings_label" : "Settings"
+    "settings_label" : "Settings",
+    "new_timer" : "New Timer",
+    "name" : "Name",
+    "number_of_sets" : "Number of sets",
+    "number_of_reps_per_set" : "Number of reps per set",
+    "repitition_duration" : "Repitition duration",
+    "break_between_reps" : "Break between reps",
+    "break_between_sets" : "Break between sets",
+    "set" : "Set"
 }

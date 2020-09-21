@@ -9,5 +9,6 @@ class AppTheme {
   static const yellow = Color(0xffFFCB47);
   static const grey = Color(0xffF2F2F2);
   static const lightGrey = Color(0xFFEEEEEE);
+  static const green = Color(0xFF6CBD83);
   static const railway = 'Raleway';
 }

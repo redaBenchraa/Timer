@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:timer/features/home/data/models/entry.dart';
+import 'package:meta/meta.dart';
 
 import '../../../../colors.dart';
 
+part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
 @Injectable()
@@ -56,7 +58,31 @@ class HomeCubit extends Cubit<HomeState> {
                 title: "Pandora",
                 subTitle: "25 minutes",
               ),
+              Entry(
+                id: "8",
+                color: AppTheme.yellow,
+                title: "Pandora",
+                subTitle: "25 minutes",
+              ),
+              Entry(
+                id: "9",
+                color: AppTheme.blue,
+                title: "Pandora",
+                subTitle: "12 minutes",
+              ),
+              Entry(
+                id: "10",
+                color: AppTheme.red,
+                title: "Pandora",
+                subTitle: "5 minutes",
+              ),
+              Entry(
+                id: "11",
+                color: AppTheme.yellow,
+                title: "Pandora",
+                subTitle: "25 minutes",
+              ),
             ]);
-    emit(HomeLoaded(entries));
+    emit(HomeLoaded(entries: entries));
   }
 }

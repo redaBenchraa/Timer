@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,48 +14,26 @@ class HomeWidget extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Stack(
-          children: [
-            AnimatedSwitcher(
-                duration: const Duration(milliseconds: 250),
-                child: (state is HomeLoaded)
-                    ? Column(
-                        children: [
-                          ...state.entries.map(
-                            (e) => TimerItem(
-                              key: Key(e.id),
-                              entry: e,
-                            ),
+        return SingleChildScrollView(
+          child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              child: (state is HomeLoaded)
+                  ? Column(
+                      children: [
+                        ...state.entries.map(
+                          (e) => TimerItem(
+                            key: Key(e.id),
+                            entry: e,
                           ),
-                        ],
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: AppTheme.black,
                         ),
-                      )),
-            Positioned(
-              child: Container(
-                height: double.infinity,
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    FloatingActionButton(
-                      backgroundColor: AppTheme.yellow,
-                      elevation: 0,
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.add,
-                        color: AppTheme.white,
+                      ],
+                    )
+                  : const Center(
+                      heightFactor: 2,
+                      child: CircularProgressIndicator(
+                        backgroundColor: AppTheme.black,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+                    )),
         );
       },
     );
