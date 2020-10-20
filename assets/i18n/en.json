@@ -8,5 +8,6 @@
     "repitition_duration" : "Repitition duration",
     "break_between_reps" : "Break between reps",
     "break_between_sets" : "Break between sets",
-    "set" : "Set"
+    "set" : "Set",
+    "enter_name": "Please enter a new name"
 }

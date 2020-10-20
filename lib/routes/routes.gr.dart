@@ -38,8 +38,14 @@ class Router extends RouterBase {
       );
     },
     NewTimerPage: (data) {
+      final args = data.getArgs<NewTimerPageArguments>(
+        orElse: () => NewTimerPageArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NewTimerPage(),
+        builder: (context) => NewTimerPage(
+          key: args.key,
+          id: args.id,
+        ),
         settings: data,
       );
     },
@@ -53,5 +59,23 @@ class Router extends RouterBase {
 extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushHomePage() => push<dynamic>(Routes.homePage);
 
-  Future<dynamic> pushNewTimerPage() => push<dynamic>(Routes.newTimerPage);
+  Future<dynamic> pushNewTimerPage({
+    Key key,
+    int id,
+  }) =>
+      push<dynamic>(
+        Routes.newTimerPage,
+        arguments: NewTimerPageArguments(key: key, id: id),
+      );
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// NewTimerPage arguments holder class
+class NewTimerPageArguments {
+  final Key key;
+  final int id;
+  NewTimerPageArguments({this.key, this.id});
 }

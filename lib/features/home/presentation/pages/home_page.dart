@@ -38,7 +38,10 @@ class HomePage extends StatelessWidget {
         backgroundColor: AppTheme.yellow,
         elevation: 0,
         onPressed: () {
-          ExtendedNavigator.of(context).push(Routes.newTimerPage);
+          ExtendedNavigator.of(context).pushNewTimerPage().then(
+                (value) =>
+                    ExtendedNavigator.of(context).replace(Routes.homePage),
+              );
         },
         child: const Icon(
           Icons.add,

@@ -10,14 +10,25 @@ import 'mode_picker_dialog.dart';
 import 'tile.dart';
 
 class NewTimerWidget extends StatelessWidget {
-  const NewTimerWidget({Key key}) : super(key: key);
+  final int id;
+  const NewTimerWidget({Key key, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final translate = AppLocalizations.of(context).translate;
     final cubit = context.bloc<NewTimerCubit>();
+    if (id != null) {
+      cubit.load(id);
+      cubit.setId(id);
+    }
     List<Tile> getTiles() {
       return <Tile>[
+        Tile(
+            title: translate('name'),
+            hint: translate('enter_name'),
+            step: 1,
+            value: cubit.state.timer.name,
+            isNumber: false),
         Tile(
             title: translate('number_of_sets'),
             step: 1,
@@ -50,6 +61,9 @@ class NewTimerWidget extends StatelessWidget {
     return BlocConsumer<NewTimerCubit, NewTimerState>(
         listener: (context, state) {
       tiles = getTiles();
+      if (state.done) {
+        Navigator.of(context).pop();
+      }
     }, builder: (context, state) {
       Future<void> callback(String title, String value) async {
         await showDialog<String>(
@@ -76,7 +90,7 @@ class NewTimerWidget extends StatelessWidget {
         });
       }
 
-      final list = {
+      final list = <String, String>{
         translate("name"): state.timer.name,
         translate("number_of_sets"): '${state.timer.numberOfSets}',
         translate("number_of_reps_per_set"): '${state.timer.numberOfReps}',
@@ -89,25 +103,29 @@ class NewTimerWidget extends StatelessWidget {
           centerTitle: true,
           title: Text(translate('new_timer')),
         ),
-        body: Container(
-          padding: const EdgeInsets.all(5),
-          child: Column(children: [
-            ...list.map(
-              (entry) => TimerTile(
-                title: entry.key,
-                value: entry.value,
-                callback: callback,
-              ),
-            )
-          ]),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            child: Column(children: [
+              ...list.map(
+                (entry) => TimerTile(
+                  title: entry.key,
+                  value: entry.value,
+                  callback: callback,
+                ),
+              )
+            ]),
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: AppTheme.green,
+          backgroundColor: state.active ? AppTheme.green : AppTheme.lightGrey,
           elevation: 0,
-          onPressed: () {
-            cubit.addTimer();
-          },
+          onPressed: state.active
+              ? () {
+                  cubit.addTimer();
+                }
+              : null,
           child: const Icon(
             Icons.check,
             color: AppTheme.white,

@@ -14,13 +14,15 @@ class _$TimerTearOff {
 
 // ignore: unused_element
   _Timer call(
-      {String name,
+      {int id,
+      String name,
       int numberOfReps,
       int numberOfSets,
       int breakBetweenReps,
       int breakBetweenSets,
       int duration}) {
     return _Timer(
+      id: id,
       name: name,
       numberOfReps: numberOfReps,
       numberOfSets: numberOfSets,
@@ -35,6 +37,7 @@ class _$TimerTearOff {
 const $Timer = _$TimerTearOff();
 
 mixin _$Timer {
+  int get id;
   String get name;
   int get numberOfReps;
   int get numberOfSets;
@@ -49,7 +52,8 @@ abstract class $TimerCopyWith<$Res> {
   factory $TimerCopyWith(Timer value, $Res Function(Timer) then) =
       _$TimerCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {int id,
+      String name,
       int numberOfReps,
       int numberOfSets,
       int breakBetweenReps,
@@ -66,6 +70,7 @@ class _$TimerCopyWithImpl<$Res> implements $TimerCopyWith<$Res> {
 
   @override
   $Res call({
+    Object id = freezed,
     Object name = freezed,
     Object numberOfReps = freezed,
     Object numberOfSets = freezed,
@@ -74,6 +79,7 @@ class _$TimerCopyWithImpl<$Res> implements $TimerCopyWith<$Res> {
     Object duration = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as int,
       name: name == freezed ? _value.name : name as String,
       numberOfReps:
           numberOfReps == freezed ? _value.numberOfReps : numberOfReps as int,
@@ -95,7 +101,8 @@ abstract class _$TimerCopyWith<$Res> implements $TimerCopyWith<$Res> {
       __$TimerCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {int id,
+      String name,
       int numberOfReps,
       int numberOfSets,
       int breakBetweenReps,
@@ -113,6 +120,7 @@ class __$TimerCopyWithImpl<$Res> extends _$TimerCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object name = freezed,
     Object numberOfReps = freezed,
     Object numberOfSets = freezed,
@@ -121,6 +129,7 @@ class __$TimerCopyWithImpl<$Res> extends _$TimerCopyWithImpl<$Res>
     Object duration = freezed,
   }) {
     return _then(_Timer(
+      id: id == freezed ? _value.id : id as int,
       name: name == freezed ? _value.name : name as String,
       numberOfReps:
           numberOfReps == freezed ? _value.numberOfReps : numberOfReps as int,
@@ -139,13 +148,16 @@ class __$TimerCopyWithImpl<$Res> extends _$TimerCopyWithImpl<$Res>
 
 class _$_Timer implements _Timer {
   _$_Timer(
-      {this.name,
+      {this.id,
+      this.name,
       this.numberOfReps,
       this.numberOfSets,
       this.breakBetweenReps,
       this.breakBetweenSets,
       this.duration});
 
+  @override
+  final int id;
   @override
   final String name;
   @override
@@ -161,13 +173,15 @@ class _$_Timer implements _Timer {
 
   @override
   String toString() {
-    return 'Timer(name: $name, numberOfReps: $numberOfReps, numberOfSets: $numberOfSets, breakBetweenReps: $breakBetweenReps, breakBetweenSets: $breakBetweenSets, duration: $duration)';
+    return 'Timer(id: $id, name: $name, numberOfReps: $numberOfReps, numberOfSets: $numberOfSets, breakBetweenReps: $breakBetweenReps, breakBetweenSets: $breakBetweenSets, duration: $duration)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Timer &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.numberOfReps, numberOfReps) ||
@@ -190,6 +204,7 @@ class _$_Timer implements _Timer {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(numberOfReps) ^
       const DeepCollectionEquality().hash(numberOfSets) ^
@@ -204,13 +219,16 @@ class _$_Timer implements _Timer {
 
 abstract class _Timer implements Timer {
   factory _Timer(
-      {String name,
+      {int id,
+      String name,
       int numberOfReps,
       int numberOfSets,
       int breakBetweenReps,
       int breakBetweenSets,
       int duration}) = _$_Timer;
 
+  @override
+  int get id;
   @override
   String get name;
   @override

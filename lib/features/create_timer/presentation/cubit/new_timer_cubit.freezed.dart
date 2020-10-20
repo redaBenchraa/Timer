@@ -13,9 +13,11 @@ class _$NewTimerStateTearOff {
   const _$NewTimerStateTearOff();
 
 // ignore: unused_element
-  _NewTimerState call({Timer timer}) {
+  _NewTimerState call({Timer timer, bool active, bool done}) {
     return _NewTimerState(
       timer: timer,
+      active: active,
+      done: done,
     );
   }
 }
@@ -25,6 +27,8 @@ const $NewTimerState = _$NewTimerStateTearOff();
 
 mixin _$NewTimerState {
   Timer get timer;
+  bool get active;
+  bool get done;
 
   $NewTimerStateCopyWith<NewTimerState> get copyWith;
 }
@@ -33,7 +37,7 @@ abstract class $NewTimerStateCopyWith<$Res> {
   factory $NewTimerStateCopyWith(
           NewTimerState value, $Res Function(NewTimerState) then) =
       _$NewTimerStateCopyWithImpl<$Res>;
-  $Res call({Timer timer});
+  $Res call({Timer timer, bool active, bool done});
 
   $TimerCopyWith<$Res> get timer;
 }
@@ -49,9 +53,13 @@ class _$NewTimerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object timer = freezed,
+    Object active = freezed,
+    Object done = freezed,
   }) {
     return _then(_value.copyWith(
       timer: timer == freezed ? _value.timer : timer as Timer,
+      active: active == freezed ? _value.active : active as bool,
+      done: done == freezed ? _value.done : done as bool,
     ));
   }
 
@@ -72,7 +80,7 @@ abstract class _$NewTimerStateCopyWith<$Res>
           _NewTimerState value, $Res Function(_NewTimerState) then) =
       __$NewTimerStateCopyWithImpl<$Res>;
   @override
-  $Res call({Timer timer});
+  $Res call({Timer timer, bool active, bool done});
 
   @override
   $TimerCopyWith<$Res> get timer;
@@ -91,22 +99,30 @@ class __$NewTimerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object timer = freezed,
+    Object active = freezed,
+    Object done = freezed,
   }) {
     return _then(_NewTimerState(
       timer: timer == freezed ? _value.timer : timer as Timer,
+      active: active == freezed ? _value.active : active as bool,
+      done: done == freezed ? _value.done : done as bool,
     ));
   }
 }
 
 class _$_NewTimerState implements _NewTimerState {
-  const _$_NewTimerState({this.timer});
+  const _$_NewTimerState({this.timer, this.active, this.done});
 
   @override
   final Timer timer;
+  @override
+  final bool active;
+  @override
+  final bool done;
 
   @override
   String toString() {
-    return 'NewTimerState(timer: $timer)';
+    return 'NewTimerState(timer: $timer, active: $active, done: $done)';
   }
 
   @override
@@ -114,12 +130,19 @@ class _$_NewTimerState implements _NewTimerState {
     return identical(this, other) ||
         (other is _NewTimerState &&
             (identical(other.timer, timer) ||
-                const DeepCollectionEquality().equals(other.timer, timer)));
+                const DeepCollectionEquality().equals(other.timer, timer)) &&
+            (identical(other.active, active) ||
+                const DeepCollectionEquality().equals(other.active, active)) &&
+            (identical(other.done, done) ||
+                const DeepCollectionEquality().equals(other.done, done)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timer);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(timer) ^
+      const DeepCollectionEquality().hash(active) ^
+      const DeepCollectionEquality().hash(done);
 
   @override
   _$NewTimerStateCopyWith<_NewTimerState> get copyWith =>
@@ -127,10 +150,15 @@ class _$_NewTimerState implements _NewTimerState {
 }
 
 abstract class _NewTimerState implements NewTimerState {
-  const factory _NewTimerState({Timer timer}) = _$_NewTimerState;
+  const factory _NewTimerState({Timer timer, bool active, bool done}) =
+      _$_NewTimerState;
 
   @override
   Timer get timer;
+  @override
+  bool get active;
+  @override
+  bool get done;
   @override
   _$NewTimerStateCopyWith<_NewTimerState> get copyWith;
 }

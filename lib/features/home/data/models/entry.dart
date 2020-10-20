@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 class Entry {
-  final String id;
+  final int id;
   final Color color;
   final String title;
   final String subTitle;

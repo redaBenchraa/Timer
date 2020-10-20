@@ -6,11 +6,15 @@ import 'package:timer/features/create_timer/presentation/widget/new_timer_widget
 import 'package:timer/injection/injection.dart';
 
 class NewTimerPage extends StatelessWidget {
+  final int id;
+  const NewTimerPage({Key key, this.id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider<NewTimerCubit>(
       create: (context) => getIt<NewTimerCubit>(),
-      child: const NewTimerWidget(),
+      child: NewTimerWidget(
+        id: id,
+      ),
     );
   }
 }

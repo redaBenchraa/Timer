@@ -6,7 +6,10 @@ import 'package:timer/features/home/data/models/entry.dart';
 
 class TimerItem extends StatelessWidget {
   final Entry entry;
-  const TimerItem({Key key, this.entry}) : super(key: key);
+  final Function delete;
+  final Function edit;
+  const TimerItem({Key key, this.entry, this.delete, this.edit})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,27 +19,29 @@ class TimerItem extends StatelessWidget {
         child: Slidable(
           actionPane: const SlidableDrawerActionPane(),
           actionExtentRatio: 0.15,
-          actions: const [
+          actions: [
             ClipRRect(
-              borderRadius: BorderRadius.horizontal(
+              borderRadius: const BorderRadius.horizontal(
                 left: Radius.circular(5),
               ),
               child: IconSlideAction(
                 icon: Icons.edit,
                 color: AppTheme.lightGrey,
                 foregroundColor: AppTheme.black,
+                onTap: () => edit(),
               ),
             ),
           ],
-          secondaryActions: const [
+          secondaryActions: [
             ClipRRect(
-              borderRadius: BorderRadius.horizontal(
+              borderRadius: const BorderRadius.horizontal(
                 right: Radius.circular(5),
               ),
               child: IconSlideAction(
                 icon: Icons.delete,
                 color: AppTheme.lightGrey,
                 foregroundColor: AppTheme.black,
+                onTap: () => delete(),
               ),
             ),
           ],

@@ -8,5 +8,6 @@
     "repitition_duration" : "Durée de répétition",
     "break_between_reps" : "Pause entre les répétitions",
     "break_between_sets" : "Pause entre les séries",
-    "set" : "Définir"
+    "set" : "Définir",
+    "enter_name": "Veuillez saisir un nouveau nom"
 }

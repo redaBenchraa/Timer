@@ -16,6 +16,13 @@ class ModePickerDialog extends StatefulWidget {
 
 class _ModePickerDialogState extends State<ModePickerDialog> {
   int number = 10;
+  TextEditingController myController;
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
 
   @mustCallSuper
   @override
@@ -24,6 +31,8 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
     setState(() {
       number = widget.tile.initial;
     });
+    myController = TextEditingController(text: widget.tile.value);
+
     super.initState();
   }
 
@@ -63,42 +72,51 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.only(top: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: number == widget.tile.step
-                          ? theme.disabledColor
-                          : theme.primaryColor,
-                      size: 32,
+              child: widget.tile.isNumber
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: number == widget.tile.step
+                                ? theme.disabledColor
+                                : theme.primaryColor,
+                            size: 32,
+                          ),
+                          onPressed: () => decrement(),
+                        ),
+                        Container(
+                          width: 100,
+                          child: Text(
+                            number.toString(),
+                            style: const TextStyle(
+                                fontSize: 42,
+                                fontFamily: 'Arial',
+                                color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: number == widget.tile.step * 50
+                                ? theme.disabledColor
+                                : theme.primaryColor,
+                            size: 32,
+                          ),
+                          onPressed: () => increment(),
+                        ),
+                      ],
+                    )
+                  : TextField(
+                      controller: myController,
+                      style: const TextStyle(color: AppTheme.black),
+                      decoration: InputDecoration(
+                          hintText: widget.tile.isNumber
+                              ? widget.tile.title
+                              : widget.tile.hint),
                     ),
-                    onPressed: () => decrement(),
-                  ),
-                  Container(
-                    width: 100,
-                    child: Text(
-                      number.toString(),
-                      style: const TextStyle(
-                          fontSize: 42,
-                          fontFamily: 'Arial',
-                          color: Colors.black),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: number == widget.tile.step * 50
-                          ? theme.disabledColor
-                          : theme.primaryColor,
-                      size: 32,
-                    ),
-                    onPressed: () => increment(),
-                  ),
-                ],
-              ),
             ),
             Expanded(child: Container()),
             RaisedButton(
@@ -109,7 +127,9 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
               focusElevation: 0,
               disabledElevation: 0,
               hoverElevation: 0,
-              onPressed: () => Navigator.of(context).pop('${number}'),
+              onPressed: () => Navigator.of(context).pop(
+                widget.tile.isNumber ? '${number}' : myController.text,
+              ),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(

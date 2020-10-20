@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:timer/routes/routes.gr.dart';
+import 'package:timer/routes/routes.gr.dart' as timer;
 import 'package:timer/utils.dart';
 
 import 'app_localization.dart';
@@ -60,7 +60,7 @@ class _AppWidgetState extends State<AppWidget> {
                 .primaryIconTheme
                 .copyWith(color: Colors.white),
           ),
-          child: ExtendedNavigator(router: Router()),
+          child: ExtendedNavigator(router: timer.Router()),
         );
       },
       supportedLocales: const [
