@@ -9,6 +9,12 @@
             "program": "lib/main.dart",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "Flutter",
+            "program": "test_driver/main.dart",
+            "request": "launch",
+            "type": "dart"
         }
     ]
 }

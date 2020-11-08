@@ -62,7 +62,7 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
       elevation: 0.0,
       backgroundColor: Colors.white,
       title: Text(
-        widget.tile.title,
+        translate(widget.tile.title),
         style: const TextStyle(color: AppTheme.black),
       ),
       content: Container(
@@ -77,6 +77,7 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         IconButton(
+                          key: const Key('decrement_button'),
                           icon: Icon(
                             Icons.arrow_back_ios,
                             color: number == widget.tile.step
@@ -88,6 +89,7 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
                         ),
                         Text(
                           number.toString(),
+                          key: const Key('number_value'),
                           style: const TextStyle(
                               fontSize: 42,
                               fontFamily: 'Arial',
@@ -95,6 +97,7 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
                           textAlign: TextAlign.center,
                         ),
                         IconButton(
+                          key: const Key('increment_button'),
                           icon: Icon(
                             Icons.arrow_forward_ios,
                             color: number == widget.tile.step * 50
@@ -107,16 +110,18 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
                       ],
                     )
                   : TextField(
+                      key: const Key('input'),
                       controller: myController,
                       style: const TextStyle(color: AppTheme.black),
                       decoration: InputDecoration(
                           hintText: widget.tile.isNumber
-                              ? widget.tile.title
-                              : widget.tile.hint),
+                              ? translate(widget.tile.title)
+                              : translate(widget.tile.hint)),
                     ),
             ),
             Expanded(child: Container()),
             RaisedButton(
+              key: const Key('set_button'),
               textColor: theme.backgroundColor,
               color: theme.primaryColor,
               elevation: 0,

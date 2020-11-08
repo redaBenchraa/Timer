@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../../app_localization.dart';
 import '../../../../colors.dart';
 
 class TimerTile extends StatelessWidget {
@@ -12,14 +13,17 @@ class TimerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final translate = AppLocalizations.of(context).translate;
     return Column(children: [
       ListTile(
         title: Text(
-          title,
+          translate(title),
+          key: Key('${title}_label'),
           style: const TextStyle(color: AppTheme.black),
         ),
         trailing: Text(
           value,
+          key: Key('${title}_value'),
           style: const TextStyle(color: AppTheme.black),
         ),
         onTap: () => callback(title, value.split(' ')[0]),

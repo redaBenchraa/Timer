@@ -35,6 +35,7 @@ class HomePage extends StatelessWidget {
         child: const HomeWidget(),
       ),
       floatingActionButton: FloatingActionButton(
+        key: const Key('add_button'),
         backgroundColor: AppTheme.yellow,
         elevation: 0,
         onPressed: () {

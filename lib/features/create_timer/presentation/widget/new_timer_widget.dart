@@ -24,36 +24,42 @@ class NewTimerWidget extends StatelessWidget {
     List<Tile> getTiles() {
       return <Tile>[
         Tile(
-            title: translate('name'),
-            hint: translate('enter_name'),
-            step: 1,
-            value: cubit.state.timer.name,
-            isNumber: false),
+          title: 'name',
+          hint: 'enter_name',
+          step: 1,
+          value: cubit.state.timer.name,
+          isNumber: false,
+        ),
         Tile(
-            title: translate('number_of_sets'),
-            step: 1,
-            initial: cubit.state.timer.numberOfSets,
-            isNumber: true),
+          title: 'number_of_sets',
+          step: 1,
+          initial: cubit.state.timer.numberOfSets,
+          isNumber: true,
+        ),
         Tile(
-            title: translate('number_of_reps_per_set'),
-            step: 1,
-            initial: cubit.state.timer.numberOfReps,
-            isNumber: true),
+          title: 'number_of_reps_per_set',
+          step: 1,
+          initial: cubit.state.timer.numberOfReps,
+          isNumber: true,
+        ),
         Tile(
-            title: translate('repitition_duration'),
-            step: 10,
-            initial: cubit.state.timer.duration,
-            isNumber: true),
+          title: 'repitition_duration',
+          step: 10,
+          initial: cubit.state.timer.duration,
+          isNumber: true,
+        ),
         Tile(
-            title: translate('break_between_reps'),
-            step: 10,
-            initial: cubit.state.timer.breakBetweenReps,
-            isNumber: true),
+          title: 'break_between_reps',
+          step: 10,
+          initial: cubit.state.timer.breakBetweenReps,
+          isNumber: true,
+        ),
         Tile(
-            title: translate('break_between_sets'),
-            step: 10,
-            initial: cubit.state.timer.breakBetweenSets,
-            isNumber: true),
+          title: 'break_between_sets',
+          step: 10,
+          initial: cubit.state.timer.breakBetweenSets,
+          isNumber: true,
+        ),
       ];
     }
 
@@ -73,30 +79,37 @@ class NewTimerWidget extends StatelessWidget {
                     .where((element) => element.title == title)
                     .first)).then((value) {
           if (value != null) {
-            if (title == translate('name')) {
-              cubit.setName(value);
-            } else if (title == translate('number_of_sets')) {
-              cubit.setNbSets(int.parse(value));
-            } else if (title == translate('number_of_reps_per_set')) {
-              cubit.setNbReps(int.parse(value));
-            } else if (title == translate('repitition_duration')) {
-              cubit.setDuration(int.parse(value));
-            } else if (title == translate('break_between_reps')) {
-              cubit.setBreakReps(int.parse(value));
-            } else if (title == translate('break_between_sets')) {
-              cubit.setBreakSets(int.parse(value));
+            switch (title) {
+              case 'name':
+                cubit.setName(value);
+                break;
+              case 'number_of_sets':
+                cubit.setNbSets(int.parse(value));
+                break;
+              case 'number_of_reps_per_set':
+                cubit.setNbReps(int.parse(value));
+                break;
+              case 'repitition_duration':
+                cubit.setDuration(int.parse(value));
+                break;
+              case 'break_between_reps':
+                cubit.setBreakReps(int.parse(value));
+                break;
+              case 'break_between_sets':
+                cubit.setBreakSets(int.parse(value));
+                break;
             }
           }
         });
       }
 
       final list = <String, String>{
-        translate("name"): state.timer.name,
-        translate("number_of_sets"): '${state.timer.numberOfSets}',
-        translate("number_of_reps_per_set"): '${state.timer.numberOfReps}',
-        translate("repitition_duration"): '${state.timer.duration} s',
-        translate("break_between_reps"): '${state.timer.breakBetweenReps} s',
-        translate("break_between_sets"): '${state.timer.breakBetweenSets} s',
+        'name': state.timer.name,
+        'number_of_sets': '${state.timer.numberOfSets}',
+        'number_of_reps_per_set': '${state.timer.numberOfReps}',
+        'repitition_duration': '${state.timer.duration} s',
+        'break_between_reps': '${state.timer.breakBetweenReps} s',
+        'break_between_sets': '${state.timer.breakBetweenSets} s',
       }.entries;
       return Scaffold(
         appBar: AppBar(
@@ -109,6 +122,7 @@ class NewTimerWidget extends StatelessWidget {
             child: Column(children: [
               ...list.map(
                 (entry) => TimerTile(
+                  key: Key('${entry.key}_tile'),
                   title: entry.key,
                   value: entry.value,
                   callback: callback,
@@ -119,6 +133,7 @@ class NewTimerWidget extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
+          key: const Key('add_timer_button'),
           backgroundColor: state.active ? AppTheme.green : AppTheme.lightGrey,
           elevation: 0,
           onPressed: state.active
