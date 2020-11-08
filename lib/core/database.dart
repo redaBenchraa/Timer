@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/moor_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 part 'database.g.dart';
 
@@ -14,13 +18,17 @@ class Timers extends Table {
   IntColumn get duration => integer().withDefault(const Constant(30))();
 }
 
+LazyDatabase _openConnection() {
+  return LazyDatabase(() async {
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'app.sqlite'));
+    return VmDatabase(file);
+  });
+}
+
 @UseMoor(tables: [Timers])
 class Database extends _$Database {
-  Database()
-      : super(FlutterQueryExecutor.inDatabaseFolder(
-          path: 'app.db',
-          logStatements: true,
-        ));
+  Database() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
