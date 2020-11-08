@@ -1,5 +1,5 @@
 # Name of your workflow.
-name: drive
+name: Drive
 # Trigger the workflow on push or pull request.
 on: [push, pull_request]
 # A workflow run is made up of one or more jobs.
@@ -44,4 +44,4 @@ jobs:
       with:
         channel: 'stable' # or: 'dev' or 'beta'
     - name: "Run Flutter Driver tests"
-      run: "flutter drive --target=test_driver/main.dart"
+      run: "flutter drive --target=test_driver/app.dart"
