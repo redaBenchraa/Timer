@@ -20,7 +20,8 @@ dependencies:
   flutter_slidable: ^0.5.5
   dartz: ^0.9.2
   equatable: ^1.2.5
-  moor: ^3.3.1
+  moor: ^3.2.0
+  moor_flutter: ^3.1.0
 
 dev_dependencies:
   flutter_driver:
@@ -30,7 +31,15 @@ dev_dependencies:
   lint: ^1.2.0
   injectable_generator: ^0.4.1
   auto_route_generator: ^0.6.0
+  moor_generator:
   build_runner:
+
+dependency_overrides:
+  moor:
+    git:
+      url: https://github.com/simolus3/moor.git
+      ref: develop
+      path: moor
 
 flutter:
   uses-material-design: true

@@ -66,12 +66,12 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
         style: const TextStyle(color: AppTheme.black),
       ),
       content: Container(
+        padding: const EdgeInsets.only(top: 24),
         height: 150,
         width: 300,
         child: Column(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.only(top: 24),
               child: widget.tile.isNumber
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,16 +86,13 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
                           ),
                           onPressed: () => decrement(),
                         ),
-                        Container(
-                          width: 100,
-                          child: Text(
-                            number.toString(),
-                            style: const TextStyle(
-                                fontSize: 42,
-                                fontFamily: 'Arial',
-                                color: Colors.black),
-                            textAlign: TextAlign.center,
-                          ),
+                        Text(
+                          number.toString(),
+                          style: const TextStyle(
+                              fontSize: 42,
+                              fontFamily: 'Arial',
+                              color: Colors.black),
+                          textAlign: TextAlign.center,
                         ),
                         IconButton(
                           icon: Icon(
@@ -128,7 +125,7 @@ class _ModePickerDialogState extends State<ModePickerDialog> {
               disabledElevation: 0,
               hoverElevation: 0,
               onPressed: () => Navigator.of(context).pop(
-                widget.tile.isNumber ? '${number}' : myController.text,
+                widget.tile.isNumber ? '$number' : myController.text,
               ),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
