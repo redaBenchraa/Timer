@@ -56,9 +56,9 @@ class _AppWidgetState extends State<AppWidget> {
             primaryIconTheme: Theme.of(context)
                 .primaryIconTheme
                 .copyWith(color: AppTheme.white),
-            accentIconTheme: Theme.of(context)
-                .primaryIconTheme
-                .copyWith(color: Colors.white),
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+              foregroundColor: Theme.of(context).primaryIconTheme.color,
+            ),
           ),
           child: ExtendedNavigator(router: timer.Router()),
         );
