@@ -13,7 +13,7 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.bloc<HomeCubit>();
+    final cubit = context.watch<HomeCubit>();
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
