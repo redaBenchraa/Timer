@@ -16,7 +16,7 @@ class NewTimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translate = AppLocalizations.of(context).translate;
-    final cubit = context.bloc<NewTimerCubit>();
+    final cubit = context.watch<NewTimerCubit>();
     if (id != null) {
       cubit.load(id);
       cubit.setId(id);
