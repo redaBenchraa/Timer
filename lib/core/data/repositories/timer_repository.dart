@@ -81,6 +81,6 @@ class TimerRepository implements ITimerRepository {
     final duration = timer.numberOfSets *
         (timer.numberOfReps * (timer.duration + timer.breakBetweenReps) +
             timer.breakBetweenSets);
-    return '${duration ~/ 60}  minutes';
+    return '${duration ~/ 60} minutes';
   }
 }

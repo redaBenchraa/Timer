@@ -1,0 +1,9 @@
+{
+    "id" : 1,
+    "name" : "name",
+    "numberOfReps" : 4,
+    "numberOfSets" : 4,
+    "breakBetweenReps" : 10,
+    "breakBetweenSets" : 60,
+    "duration" : 30
+}

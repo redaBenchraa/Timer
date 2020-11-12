@@ -28,7 +28,7 @@ LazyDatabase _openConnection() {
 
 @UseMoor(tables: [Timers])
 class Database extends _$Database {
-  Database() : super(_openConnection());
+  Database({VmDatabase database}) : super(database ?? _openConnection());
 
   @override
   int get schemaVersion => 1;
